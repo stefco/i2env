@@ -1,0 +1,8 @@
+language: python
+services:
+  - docker
+install:
+  - if [ -z "$TRAVIS_TAG" ]; then echo "Not a tag, exiting" && exit 0; fi
+  - docker build -t "$DOCKER_REPO" .
+  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker push "$DOCKER_REPO:latest"
