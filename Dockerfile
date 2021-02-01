@@ -1,6 +1,12 @@
 FROM continuumio/miniconda3:latest
 COPY . /root/provision
 RUN mkdir -p ~/.local/share ~/.cache ~/.jupyter \
+    && apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get -y install --no-install-recommends \
+        gcc \
+        curl \
+        git \
     && conda config --add channels conda-forge \
     && conda config --set channel_priority strict \
     && conda install -y python=3.9 pip pyyaml \
