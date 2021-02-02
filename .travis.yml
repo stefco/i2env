@@ -3,12 +3,13 @@ services:
   - docker
 install:
   - if [ -z "$TRAVIS_TAG" ]; then echo "Not a tag, exiting" && exit 0; fi
-  - echo "LOGGING IN AND PUSHING IMAGES."
-  - echo "BUILDING LEAN IMAGE."
-  - docker build -t "$DOCKER_REPO" .
-  - echo "BUILDING DEV IMAGE."
-  - docker build -f Dockerfile-dev -t "$DOCKER_REPO:dev" .
+  - echo "LOGGING IN"
   - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+  - echo "BUILDING LEAN IMAGE"
+  - docker build -t "$DOCKER_REPO" .
+  - echo "BUILDING DEV IMAGE"
+  - docker build -f Dockerfile-dev -t "$DOCKER_REPO:dev" .
+  - echo "PUSHING IMAGES"
   - docker push "$DOCKER_REPO:latest"
   - docker push "$DOCKER_REPO:dev"
   - echo "Build finished successfully."
