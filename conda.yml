@@ -2,6 +2,8 @@ name: i2stonk
 channels:
   - conda-forge
 dependencies:
+  - pandas
+  - websockets
   - numpy
   - praw
   - pip:
