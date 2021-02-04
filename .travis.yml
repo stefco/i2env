@@ -5,12 +5,15 @@ install:
   - if [ -z "$TRAVIS_TAG" ]; then echo "Not a tag, exiting" && exit 0; fi
   - echo "LOGGING IN"
   - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-  - echo "BUILDING LEAN IMAGE"
+  - echo "BUILDING PY IMAGE"
   - docker build -t "$DOCKER_REPO:env-py" .
+  - echo "BUILDING PY+RUST IMAGE"
+  - docker build -f Dockerfile-rust -t "$DOCKER_REPO:env-pyrs" .
   - echo "BUILDING DEV IMAGE"
-  - docker build -f Dockerfile-dev -t "$DOCKER_REPO:env-py-dev" .
+  - docker build -f Dockerfile-dev -t "$DOCKER_REPO:env-pyrs-dev" .
   - echo "PUSHING IMAGES"
   - docker push "$DOCKER_REPO:env-py"
-  - docker push "$DOCKER_REPO:env-py-dev"
+  - docker push "$DOCKER_REPO:env-pyrs"
+  - docker push "$DOCKER_REPO:env-pyrs-dev"
   - echo "Build finished successfully."
   - exit 0
