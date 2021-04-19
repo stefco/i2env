@@ -1,8 +1,8 @@
 FROM i2onig/i2:env-py
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
         | sh -s -- -y --default-toolchain nightly \
-    && apt update \
-    && apt install \
+    && apt update -y \
+    && apt install -y \
         cmake \
         build-essential \
         autoconf \
