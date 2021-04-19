@@ -5,6 +5,7 @@ dependencies:
   - pandas
   - websockets
   - numpy
+  - xeus-sqlite
   - praw
   - scipy
   - pip:
