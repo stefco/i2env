@@ -1,3 +1,13 @@
 FROM i2onig/i2:env-py
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
-        | sh -s -- -y --default-toolchain nightly
+        | sh -s -- -y --default-toolchain nightly \
+    && apt update \
+    && apt install \
+        cmake \
+        build-essential \
+        autoconf \
+        automake \
+        autotools-dev \
+        libtool \
+        xutils-dev \
+    && rm -rf /var/lib/apt/lists/*
