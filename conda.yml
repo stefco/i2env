@@ -6,6 +6,7 @@ dependencies:
   - websockets
   - numpy
   - praw
+  - scipy
   - pip:
     - ccxt
     - yfinance
