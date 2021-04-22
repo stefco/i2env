@@ -1,2 +1,2 @@
 FROM i2onig/i2:env-pyrs
-RUN conda install -y matplotlib ipython jupyter jupyterlab
+RUN conda install -y ipython jupyter jupyterlab

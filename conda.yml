@@ -1,14 +1,26 @@
 name: i2stonk
 channels:
   - conda-forge
+  - numba
+  - intel
 dependencies:
+  - python=3.8
   - pandas
   - websockets
   - numpy
   - xeus-sqlite
   - praw
+  - h5py
+  - pyyaml
+  - numba
+  - flit
   - scipy
+  - matplotlib
+  # acceleration
+  - icc_rt  # -c numba
+  - intelpython3_full  # -c intel
   - pip:
+    - nptyping
     - ccxt
     - yfinance
     - yahoofinancials
