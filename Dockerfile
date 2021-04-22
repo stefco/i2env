@@ -11,11 +11,13 @@ RUN mkdir -p ~/.local/share ~/.cache ~/.jupyter \
         vim \
     && rm -rf /var/lib/apt/lists/* \
     && conda config --add channels conda-forge \
+    && conda config --add channels numba \
+    && conda config --add channels intel \
     && conda config --set channel_priority strict \
     && conda install -y python=3.8 pip pyyaml \
     && python -c 'import yaml, pathlib; y=yaml.full_load(pathlib.Path("/root/provision/conda.yml").read_text()); print(" ".join(d for d in y["dependencies"] if isinstance(d, str)))' \
         | xargs conda install -y \
-    && pip install ccxt yfinance yahoofinancials telethon git+https://github.com/Binance-docs/Binance_Futures_python.git \
+    && pip install nptyping ccxt yfinance yahoofinancials telethon git+https://github.com/Binance-docs/Binance_Futures_python.git \
     && echo "Python version: `which python`" \
     && conda clean -y --all \
     && cat /root/provision/.bashrc >>/root/.bashrc \
